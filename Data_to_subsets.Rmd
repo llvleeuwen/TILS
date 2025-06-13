@@ -4,7 +4,7 @@
 
 ---  
 ## Import required packages.
-
+Run this line of code for all subsequent scripts in order to access the functions used. 
 ```{r import required packages, include=FALSE}
 library(data.table)
 library(Seurat)
@@ -26,12 +26,13 @@ library(tibble)
 library(ggpointdensity)
 library(viridis)
 
+# Increase allowed size for variables (scRNAseq datasets are very large). 
 options(future.globals.maxSize = 16 *  1024^3)
 ```
 ---  
 # Data to Subsets.
 ## 1. Create a Seurat object.
-
+The count matrix represents the number of molecules detected for each **feature** _(e.g. gene, represented by rows)_ across individual cells, identified by a **Unique Molecular Identifier** _(UMI, represented by columns)_. I convert the count matrix to a **Seurat object**, which serves as a container for both data _(e.g. count matrix)_ and analyses _(e.g. PCA, UMAP)_.
 ```{r create a Seurat object, echo=FALSE}
 # Read in the count matrix as a data frame.
 counts.matrix <- as.data.frame(fread("Data/GSE149614_HCC.scRNAseq.S71915.count.txt"))
